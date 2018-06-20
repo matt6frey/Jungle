@@ -60,6 +60,18 @@ main section.categories-show {
         }
       }
 
+      span.sold {
+        color: #fff;
+        background-color: #de9997;
+        padding: 1rem 1.5rem;
+        border-radius: 4px 0 10px 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
     }
   }
 }
