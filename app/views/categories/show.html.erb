@@ -2,13 +2,13 @@
 
   <header class="page-header">
     <h1>
-      <%= @category.name %>
-      <small>(<%= pluralize @products.size, 'product' %>)</small>
+      Category
+
     </h1>
   </header>
 
   <div class="products">
-    <%= render @products %>
+    <%= render @category.name %>
   </div>
 
 </section>
