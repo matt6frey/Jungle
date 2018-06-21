@@ -2,6 +2,26 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @items = make_list(@order)
+    @total = total_cost(@items);
+  end
+
+  def total_cost(order)
+    total = 0
+    order.each { |item|
+      total += item["price"]
+    }
+    total
+  end
+
+  def make_list(order)
+    formatted = []
+    items = order.line_items.where(order_id: @order.id)
+    items.each { |item|
+      product = Product.find(item.product_id)
+      formatted.push({"name" => product.name, "image" => product.image, "qty" => item.quantity, "price" => product.price_cents})
+    }
+    formatted
   end
 
   def create

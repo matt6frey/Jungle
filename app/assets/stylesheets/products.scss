@@ -84,5 +84,51 @@ main section.products-show {
     }
   }
 }
+.margin-5 {
+  margin-bottom: 2rem;
+}
+.purchase-order {
+  .heading, .total {
+    height: 40px;
+
+    .qty {
+      font-style: initial;
+      right: 10rem;
+    }
+  }
+
+  .heading {
+    background-color: #ab605e;
+  }
+
+  .total {
+    background-color: #ccc;
+  }
+
+  span {
+    display: inline-block;
+  }
+
+  span.product-name {
+    left: 8.5rem;
+  }
+
+  span.info {
+    position: absolute;
+    font-weight: bold;
+  }
+
+    .price {
+      font-weight: bold;
+      right: 1rem;
+    }
+
+    .qty {
+      font-style: italic;
+      right: 12rem;
+    }
 
 
+
+
+}

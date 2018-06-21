@@ -5,7 +5,37 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <h4 class="text-center margin-5">Thank you for your order!</h4>
+
+    <ul class="list-group purchase-order">
+      <li class="list-group-item heading">
+        <span class="info">Item</span>
+        <span class="info qty">Quantity</span>
+        <span class="info price">Price</span>
+
+      </li>
+      <% @items.each do |item| %>
+
+      <li class="list-group-item">
+        <span>
+          <img src="<%= item['image'] %>" width="60px" height="auto" >
+        </span>
+        <span class="info product-name">
+          <%= item['name'] %>
+        </span>
+        <span class="info qty"><%= item['qty'] %></span>
+        <span class="info price"><%= humanized_money_with_symbol (item['price']/100)*item['qty'] %></span>
+      </li>
+
+      <% end %>
+      <li class="list-group-item total">
+        <span class="info qty">Total:</span>
+        <span class="info price"><%= humanized_money_with_symbol @total/10 %></span>
+      </li>
+    </ul>
+
+    <p class="text-center"><small>A copy of your receipt has been sent to: <%= current_user.email %></small></p>
+
   </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
