@@ -1,9 +1,12 @@
+require 'mail'
+
 class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
     @items = make_list(@order)
     @total = total_cost(@items);
+    UserMailer.send_mail(current_user, @order).deliver_now
   end
 
   def total_cost(order)
@@ -86,5 +89,10 @@ class OrdersController < ApplicationController
     end
     total
   end
+
+  def order_id
+    @order
+  end
+  helper_method :order_id
 
 end
