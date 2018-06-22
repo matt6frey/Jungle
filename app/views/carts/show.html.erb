@@ -4,6 +4,7 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if cart.present? %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -49,5 +50,11 @@
       <% end %>
     </div>
   </div>
+  <% else %>
+    <h3 class="margin-5">There are no items in your Cart.</h3>
+    <div class="well">
+      <%= link_to 'All Product', [:products], class: 'btn btn-info' %>
+    </div>
+  <% end %>
 
 </section>
