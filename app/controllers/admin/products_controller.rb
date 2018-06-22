@@ -1,4 +1,10 @@
+require 'dotenv/load'
+require 'bcrypt'
+
 class Admin::ProductsController < ApplicationController
+  protect_from_forgery with: :exception
+  # http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
+  http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD'], only: [:index, :new, :create, :destroy]
 
   def index
     @products = Product.order(id: :desc).all
