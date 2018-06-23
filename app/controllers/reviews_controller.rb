@@ -1,4 +1,14 @@
 class ReviewsController < ApplicationController
+  before_filter :is_logged_in?
+
+  def is_logged_in?
+    puts current_user
+    if !User.find(current_user.id)
+    # if !current_user && !User.find_by :email current_user.email < 1
+      redirect_to :login
+    end
+  end
+
   def index
     @reviews = Review.all.order(created_at: :desc)
   end
@@ -13,6 +23,17 @@ class ReviewsController < ApplicationController
       redirect_to :back
     else
       redirect_to :back
+    end
+  end
+
+  def destroy
+    user = User.find(current_user.id)
+    @review = Review.find params[:id]
+    if user.email === @review.email
+      @review.destroy
+      redirect_to :back, notice: 'Review deleted!'
+    else
+      redirect_to :back, notice: "Can't delete this review"
     end
   end
 

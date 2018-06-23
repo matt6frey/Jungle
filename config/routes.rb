@@ -25,8 +25,9 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
-  # post '/ratings' => 'ratings#create'
+
   post '/review' => 'reviews#create'
+  get '/review/delete/:id' => 'reviews#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

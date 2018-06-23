@@ -28,18 +28,16 @@
       </div>
     </div>
     <div class="row">
-      <hr><!-- Rating Form -->
-        <!-- old rating form -->
-      <hr><!-- Start Review Form | End Rating Form -->
+      <% if current_user %> <!-- Review section start -->
       <h4 style="width: 100%;">Add your review <button id="show" class="btn btn-primary">Show</button></h4>
       <%= form_for :reviews, url: "../review", class: ['form-group', 'review'] do |f| %>
           <%= f.label(:name, "Name:", class: 'margin-5') %>
-          <%= f.text_field(:name, class: ['form-control', 'margin-5']) %>
+          <%= f.text_field(:name, :value => current_user.name, class: ['form-control', 'margin-5']) %>
           <%= f.label(:email, "Email:", class: 'margin-5') %>
-          <%= f.email_field(:email, class: ['form-control', 'margin-5']) %>
+          <%= f.email_field(:email, :value => current_user.email, class: ['form-control', 'margin-5']) %>
           <%= f.label(:review, "Comment:") %>
           <%= f.text_area(:review, class: ['form-control', 'margin-5']) %>
-          <%= f.label(:rating, "Like this product?") %>
+          <%= f.label(:rating, "Your Rating:") %>
           <%= f.number_field(:rating, in: 1..5, :step => "0.5",  class: ['form-control', 'rater']) %>
           <%= f.hidden_field(:product_id, {:value => @product.id}) %>
           <%= f.submit "+ Review", class: ['btn', 'btn-primary'] %>
@@ -52,14 +50,23 @@
       <h3>Product Reviews</h3>
 
       <% @allReviews.each do |review| %>
-        <div class="row margin-5 review-content">
-          <h4 class="font-weight-bold margin-5"><%= review.review[0..16] %>...<small class="float-right"><%= review.created_at.strftime("%B %d, %Y at %I:%M %p") %></small></h4>
-          <p><strong><%= review.rating %> / 5</strong></p>
-          <p><%= review.review %></p>
-          <p><%= review.name %></p>
+        <div class="margin-5">
+          <%= link_to 'Delete Review', "/review/delete/#{review.id}", class: ['btn', 'btn-primary'] %>
+          <dl class="dl-horizontal review-content">
+            <dt>Title</dt>
+            <dd class="title"><%= review.review[0..16] %>...<small class="float-right"><%= review.created_at.strftime("%B %d, %Y at %I:%M %p") %></small></dd>
+            <dt>Rating</dt>
+            <dd><strong><%= review.rating %> / 5</strong></dd>
+            <dt>User</dt>
+            <dd><%= review.name %></dd>
+            <dt>Review</dt>
+            <dd><%= review.review %></dd>
+          </dl>
         </div>
       <% end %>
     <% end %>
+    <% end %> <!-- Reviews Section End -->
+
 
 
     <script>

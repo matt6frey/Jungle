@@ -150,6 +150,24 @@ button#show {
   border-bottom: solid 1px #ccc;
   padding: 1rem;
   margin-bottom: 1rem;
+
+  dt, dd {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  dd.title {
+    position: relative;
+    font-weight: bold;
+    font-size: 1.65rem;
+    // width: 80%;
+
+    small {
+      color: #666;
+      position: absolute;
+      right: 1rem;
+    }
+  }
 }
 
 .product-review {
