@@ -11,7 +11,7 @@
 
   <% @allReviews.each do |review| %>
     <% if product.id === review[:id] %>
-      <span class="product-review"><strong>Rating:</strong> <%= sprintf "%.2f", review[:rating] %></span>
+      <span class="product-review"><strong>Rating:</strong> <%= sprintf "%.2f", review[:rating] %> / 5</span>
     <% end %>
   <% end %>
 

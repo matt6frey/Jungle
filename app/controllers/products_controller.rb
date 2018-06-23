@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
     @products = Product.all.order(created_at: :desc)
     @allReviews = []
     @products.each { |product|
-      ratings = Rating.where(product_id: product.id)
+      ratings = Review.where(product_id: product.id)
       @allReviews.push({id: product.id, rating: overall(ratings)})
     }
   end

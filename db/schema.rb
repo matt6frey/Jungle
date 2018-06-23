@@ -56,18 +56,12 @@ ActiveRecord::Schema.define(version: 20180622173647) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "product_id"
-    t.decimal  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "name"
     t.string   "email"
     t.string   "review"
+    t.decimal  "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
