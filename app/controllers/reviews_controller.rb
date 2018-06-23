@@ -8,17 +8,17 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    review = User.new(user_params)
+    review = Review.new(review_params)
     if review.save
-      redirect_to (review)
+      redirect_to :back
     else
-      redirect_to (review)
+      redirect_to :back
     end
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:name, :email, :review)
+    params.require(:reviews).permit(:product_id, :name, :email, :review)
   end
 end

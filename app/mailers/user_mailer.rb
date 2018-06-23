@@ -1,10 +1,7 @@
 class UserMailer < ApplicationMailer
   def send_mail(user, order)
-  # def send_mail(user, order)
-    # user = User.last
     @user = user
     @order = order
-    # @items = LineItem.where(order_id: @order)
     @items = order.line_items
     @products = Product.find(@order.id)
     @rows = make_table(@items, @products)

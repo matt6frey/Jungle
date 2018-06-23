@@ -21,11 +21,43 @@
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd>$<%= @product.price %></dd>
+          <dt>Rating</dt>
+          <dd><%= overall(@product.ratings) %></dd>
         </dl>
       </div>
     </div>
+    <div class="row">
+      <hr><!-- Rating Form -->
+        <%= form_for :ratings, url: "../ratings" do |f| %>
+          <%= f.label(:rating, "Like this product?") %>
+          <%= f.range_field(:rating, in: 1..5, :step => "0.5",  class: ['form-control-range', 'rater']) %>
+          <%= f.hidden_field(:product_id, {:value => @product.id}) %>
+          <%= f.submit "Rate It", class: ['btn', 'btn-primary'] %>
+        <% end %>
+      <hr><!-- Start Review Form | End Rating Form -->
+      <h4 style="width: 100%;">Add your review <button id="show" class="btn btn-primary">Show</button></h4>
+      <%= form_for :reviews, url: "../review", class: ['form-group', 'review'] do |f| %>
+          <%= f.label(:name, "Name:", class: 'margin-5') %>
+          <%= f.text_field(:name, class: ['form-control', 'margin-5']) %>
+          <%= f.label(:email, "Email:", class: 'margin-5') %>
+          <%= f.email_field(:email, class: ['form-control', 'margin-5']) %>
+          <%= f.label(:review, "Comment:") %>
+          <%= f.text_area(:review, class: ['form-control', 'margin-5']) %>
+          <%= f.hidden_field(:product_id, {:value => @product.id}) %>
+          <%= f.submit "+ Review", class: ['btn', 'btn-primary'] %>
+        <% end %>
+      <hr><!-- End Review Form -->
+    </div>
 
+    <script>
+      $('#show').on("click", (event) => {
+        event.preventDefault();
+        $('.review').slideToggle();
+        console.log(event, $('.form-group'));
+      });
+
+    </script>
   </article>
 
 </section>

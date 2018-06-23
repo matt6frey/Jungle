@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
   # include HttpAuthConcern
   protect_from_forgery with: :exception
 
+
+
+  def overall(all)
+    sum = 0
+    all.each { |rating|
+      sum += rating.rating
+    }
+    sum / all.length
+  end
+  helper_method :overall
+
   private
 
   def cart
