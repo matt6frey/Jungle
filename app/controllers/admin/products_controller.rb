@@ -1,5 +1,4 @@
 require 'dotenv/load'
-require 'bcrypt'
 
 class Admin::ProductsController < ApplicationController
   protect_from_forgery with: :exception

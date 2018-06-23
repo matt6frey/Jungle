@@ -23,7 +23,7 @@
           <dt>Price</dt>
           <dd>$<%= @product.price %></dd>
           <dt>Rating</dt>
-          <dd><%= overall(@product.ratings) %></dd>
+          <dd><%= sprintf "%.2f", overall(@product.ratings) %></dd>
         </dl>
       </div>
     </div>
@@ -31,7 +31,7 @@
       <hr><!-- Rating Form -->
         <%= form_for :ratings, url: "../ratings" do |f| %>
           <%= f.label(:rating, "Like this product?") %>
-          <%= f.range_field(:rating, in: 1..5, :step => "0.5",  class: ['form-control-range', 'rater']) %>
+          <%= f.number_field(:rating, in: 1..5, :step => "0.5",  class: ['form-control', 'rater']) %>
           <%= f.hidden_field(:product_id, {:value => @product.id}) %>
           <%= f.submit "Rate It", class: ['btn', 'btn-primary'] %>
         <% end %>
@@ -50,11 +50,24 @@
       <hr><!-- End Review Form -->
     </div>
 
+    <h3>Product Reviews</h3>
+
+    <% @allReviews.each do |review| %>
+      <div class="row margin-5 review-content">
+        <h4 class="font-weight-bold margin-5"><%= review.review[0..16] %>...<small class="float-right"><%= review.created_at.strftime("%B %d, %Y at %I:%M %p") %></small></h4>
+
+        <p><%= review.review %></p>
+        <p><%= review.name %></p>
+      </div>
+    <% end %>
+
+
     <script>
+      // Slight UX
       $('#show').on("click", (event) => {
-        event.preventDefault();
-        $('.review').slideToggle();
-        console.log(event, $('.form-group'));
+        // event.preventDefault();
+        $('.review').closest('div').find('.review').slideToggle();
+        console.log(event, $('.review').closest('div').find('.review'));
       });
 
     </script>

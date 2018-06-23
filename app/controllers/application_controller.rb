@@ -8,10 +8,14 @@ class ApplicationController < ActionController::Base
 
   def overall(all)
     sum = 0
+    if all.length != 0
     all.each { |rating|
       sum += rating.rating
     }
     sum / all.length
+    else
+    sum
+    end
   end
   helper_method :overall
 
