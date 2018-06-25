@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
-  resources :categories, only: [:show]
+  resources :categories, only: [:index, :show]
   resources :reviews, only: [:index, :show, :create]
 
   resource :cart, only: [:show] do
@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]
     resources :categories, only: [:index, :create, :new]
   end
+
+  get '/categories' => 'categories#index'
+  get '/categories/show' => 'categories#show'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

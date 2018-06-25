@@ -1,6 +1,6 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+A mini e-commerce application built with Rails 4.2. This App has Stripe Payments integrated into the checkout. Users can select items of their choice and make a mock purchase.
 
 
 ## Setup
@@ -21,8 +21,22 @@ Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
 
+##Screenshots
+
+<div>
+  <img src="https://github.com/matt6frey/Jungle/blob/master/docs/jungle-1.png" width="48%" height="auto"  style="width:48%;">
+  <img src="https://github.com/matt6frey/Jungle/blob/master/docs/jungle-2.png" width="48%" height="auto"  style="width:48%;">
+</div>
+
+
 ## Dependencies
 
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+
+
+## Bugs
+
+* Admin dashboard page has no real mark-up or purpose at this point.
+* Authentication for the Admin Pages area only fires once. Once cookie is set, any user has to the Admin pages.

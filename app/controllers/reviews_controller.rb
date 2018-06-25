@@ -2,9 +2,7 @@ class ReviewsController < ApplicationController
   before_filter :is_logged_in?
 
   def is_logged_in?
-    puts current_user
     if !User.find(current_user.id)
-    # if !current_user && !User.find_by :email current_user.email < 1
       redirect_to :login
     end
   end

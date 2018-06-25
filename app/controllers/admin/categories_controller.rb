@@ -1,5 +1,4 @@
 class Admin::CategoriesController < ApplicationController
-  has_many :categories
 
   def index
     @categories = Category.order(id: :desc).all

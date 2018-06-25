@@ -12,7 +12,9 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @categories %>
+        <% @categories.each do |cat| %>
+          <tr><td><%= cat.name %></td></tr>
+         <% end %>
       </tbody>
     </table>
 

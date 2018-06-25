@@ -27,8 +27,8 @@
         </dl>
       </div>
     </div>
+    <% if current_user %> <!-- Review Form start -->
     <div class="row">
-      <% if current_user %> <!-- Review section start -->
       <h4 style="width: 100%;">Add your review <button id="show" class="btn btn-primary">Show</button></h4>
       <%= form_for :reviews, url: "../review", class: ['form-group', 'review'] do |f| %>
           <%= f.label(:name, "Name:", class: 'margin-5') %>
@@ -42,16 +42,20 @@
           <%= f.hidden_field(:product_id, {:value => @product.id}) %>
           <%= f.submit "+ Review", class: ['btn', 'btn-primary'] %>
         <% end %>
-      <hr><!-- End Review Form -->
+      <hr>
     </div>
+    <% end %><!-- End Review Form -->
 
 
-    <% if @allReviews.size > 0 %>
+
+    <% if @allReviews.size > 0 %> <!-- Reviews Start -->
       <h3>Product Reviews</h3>
 
       <% @allReviews.each do |review| %>
         <div class="margin-5">
+          <% if current_user %>
           <%= link_to 'Delete Review', "/review/delete/#{review.id}", class: ['btn', 'btn-primary'] %>
+          <% end %>
           <dl class="dl-horizontal review-content">
             <dt>Title</dt>
             <dd class="title"><%= review.review[0..16] %>...<small class="float-right"><%= review.created_at.strftime("%B %d, %Y at %I:%M %p") %></small></dd>
@@ -64,20 +68,7 @@
           </dl>
         </div>
       <% end %>
-    <% end %>
     <% end %> <!-- Reviews Section End -->
-
-
-
-    <script>
-      // Slight UX
-      $('#show').on("click", (event) => {
-        // event.preventDefault();
-        $('.review').closest('div').find('.review').slideToggle();
-        console.log(event, $('.review').closest('div').find('.review'));
-      });
-
-    </script>
   </article>
 
 </section>
