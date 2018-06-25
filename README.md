@@ -39,4 +39,4 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 ## Bugs
 
 * Admin dashboard page has no real mark-up or purpose at this point.
-* Authentication for the Admin Pages area only fires once. Once cookie is set, any user has to the Admin pages.
+* Authentication for the Admin Pages area only fires once. Once cookie is set, any user has access to the Admin pages.
