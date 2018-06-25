@@ -21,7 +21,7 @@ Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
 
-##Screenshots
+## Screenshots
 
 <div>
   <img src="https://github.com/matt6frey/Jungle/blob/master/docs/jungle-1.png" width="48%" height="auto"  style="width:48%;">
