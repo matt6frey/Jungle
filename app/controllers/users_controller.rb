@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
-  def new
+def new
 
-  end
+end
 
   def create
     user = User.new(user_params)
-
-    if user.save
+    if user.save!
       session[:user_id] = user.id
       @current_user = session[:user_id]
       redirect_to '/'
     else
-      redirect_to '/signup', notice: "Sign Up failed."
+      redirect_to '/signup'
     end
   end
 
